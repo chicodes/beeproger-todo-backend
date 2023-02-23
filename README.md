@@ -64,8 +64,8 @@ https://drive.google.com/file/d/1sB4DmG8_9L6pudC5_zoYlA3Su9fWJ9aQ/view?usp=shari
 
 ### What I would have done better if I had more time
 
-1. I would have written  more and achieved a test coverage of at least 90%.
-2. I would have used Redis or memcache for caching
+1. I would have written more test and achieved a test coverage of at least 90%.
+2. I would have used Redis or memcache for caching instead of using the file method
 
 ### PS:
 
