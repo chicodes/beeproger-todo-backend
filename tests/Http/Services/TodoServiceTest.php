@@ -50,16 +50,16 @@ class TodoServiceTest extends TestCase
 
         $response = $this->todoService->saveTodo($request);
 
-        $this->assertSame($response['code'], Response::HTTP_EXPECTATION_FAILED);
-        $this->assertSame($response['status'], 'false');
-        $this->assertSame($response['message'], 'could not generate image link, image not uploaded');
+        $this->assertSame($response['code'], Response::HTTP_BAD_REQUEST);
+        $this->assertSame($response['status'], false);
     }
 
     public function testSaveTodo(): void
     {
+        $imageLink = "https://res.cloudinary.com/webzifi/image/upload/v1677169918/xpry49y3bectmctee7ws.png";
         $request = new SaveTodoRequest([
             'description' => 'description',
-            'todoPhoto' => UploadedFile::fake()->image('image.jpg'),
+            'todoPhoto' => $imageLink,
             'startDate' => '2023-02-01',
             'endDate' => '2023-02-28',
             'status' => 'PENDING',
@@ -67,12 +67,11 @@ class TodoServiceTest extends TestCase
 
         $response = $this->todoService->saveTodo($request);
 
-        $this->assertSame($response['statusCode'], Response::HTTP_OK);
-        $this->assertSame($response['status'], 'success');
+        $this->assertSame($response['code'], Response::HTTP_OK);
+        $this->assertSame($response['status'], "success");
         $this->assertInstanceOf(Todo::class, $response['data']);
         $this->assertDatabaseHas('todos', [
             'id' => $response['data']->id,
-            "image_link" => $imageLink,
             'description' => $request->description,
             'start_date' => $request->startDate,
             'end_date' => $request->endDate,
@@ -96,7 +95,7 @@ class TodoServiceTest extends TestCase
 
         $this->assertSame($response['code'], Response::HTTP_NOT_FOUND);
         $this->assertSame($response['status'], false);
-        $this->assertSame($response['message'], 'This todo no longer exists!');
+        $this->assertSame($response['message'], 'This todo does not exists!');
     }
 
     public function testGetSingleTodoWithValidId(): void

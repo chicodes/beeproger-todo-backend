@@ -19,7 +19,7 @@ Develop a To-do list and/or Shopping list for us. It should consist of a loss ba
 
 
 
-## beeproger Todo Task Documentation
+## Beeproger Todo Task backend Documentation
 
 ### Language :
 
@@ -35,11 +35,16 @@ Develop a To-do list and/or Shopping list for us. It should consist of a loss ba
 
 If you have docker installed, bring up your terminal, navigate to the root directory of the project  and follow the steps below
 
-  "docker-compose up -d"
+1. Bring up your terminal
+2. Clone the project locally by running this command "git clone https://github.com/chicodes/beeproger-todo-frontend.git"
+3. CD into the directory where the project was cloned.
+4. Run this command "composer install"
+5. Run this command "docker-compose up -d"
+6. Then run this command "docker exec todo_api php artisan migrate"
 
-  "docker exec todo_api php artisan migrate"
-
-  baseurl should be http://localhost:1759/todo/v1
+Afterwards you should be able to access the app from the url below
+   
+http://localhost:1759/todo/v1
 
 
 #### Option 2 (Run from IDE)
@@ -56,3 +61,18 @@ open the project in PHPSTORM and run the commands in quotes
 ### Link to Postman collection
 
 https://drive.google.com/file/d/1sB4DmG8_9L6pudC5_zoYlA3Su9fWJ9aQ/view?usp=sharing
+
+### What I would have done if I had more time
+
+1. I would have written  more and achieved a test coverage of at least 90%.
+2. I would have used Redis or memcache for caching
+
+### PS:
+
+This API is also accessible remotely through th link below:
+
+https://todo-test.herokuapp.com/todo/v1
+
+Frontend code base can be found in the github repo below:
+
+https://github.com/chicodes/beeproger-todo-frontend
