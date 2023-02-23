@@ -62,7 +62,7 @@ open the project in PHPSTORM and run the commands in quotes
 
 https://drive.google.com/file/d/1sB4DmG8_9L6pudC5_zoYlA3Su9fWJ9aQ/view?usp=sharing
 
-### What I would have done if I had more time
+### What I would have done better if I had more time
 
 1. I would have written  more and achieved a test coverage of at least 90%.
 2. I would have used Redis or memcache for caching
