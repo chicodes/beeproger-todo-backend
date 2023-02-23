@@ -27,7 +27,6 @@ class TodoController extends Controller
      */
     public function saveTodo(SaveTodoRequest $request): array
     {
-        //dd($request);
         return $this->todoService->saveTodo($request);
     }
 

@@ -36,7 +36,7 @@ Develop a To-do list and/or Shopping list for us. It should consist of a loss ba
 If you have docker installed, bring up your terminal, navigate to the root directory of the project  and follow the steps below
 
 1. Bring up your terminal
-2. Clone the project locally by running this command "git clone https://github.com/chicodes/beeproger-todo-frontend.git"
+2. Clone the project locally by running this command "git clone https://github.com/chicodes/beeproger-todo-backend.git"
 3. CD into the directory where the project was cloned.
 4. Run this command "composer install"
 5. Run this command "docker-compose up -d"

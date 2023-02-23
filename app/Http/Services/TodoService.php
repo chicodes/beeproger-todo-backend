@@ -58,7 +58,6 @@ class TodoService
             Log::info("NEW TODO INSERTED: $todo");
             $todo->refresh();
 
-            //return new TodoResponse($todo);
             return Utilities::getResponse("success", true, Response::HTTP_CREATED, $todo);
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
@@ -74,8 +73,7 @@ class TodoService
     {
         try {
             Log::info("LISTING ALL TODOS");
-            $todos = Todo::paginate(2);
-            //return TodoResource::collection($todos);
+            $todos = Todo::paginate(10);
             return Utilities::getResponse("success", true, Response::HTTP_OK, $todos);
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
@@ -115,7 +113,6 @@ class TodoService
         try {
             Log::info("GET TODO BY STATUS");
             $statusUppercase = strtoupper($status);
-            //dd($statusUppercase);
             if (!in_array($statusUppercase, $this->todoStatus)) {
                 throw new NotFoundException("Invalid TODO status!", Response::HTTP_EXPECTATION_FAILED);
             }
@@ -196,17 +193,14 @@ class TodoService
                 $request->status = $request->status;
             }
 
-
             $todo->description = $request->description;
             $todo->image_link = $imageLink;
             $todo->start_date = $request->startDate;
             $todo->end_date = $request->endDate;
             $todo->status = $request->status;
-            //$todo->update($todoData);
             $todo->save();
             $todo->refresh();
             Cache::forget("todo_" . $id);
-            //event(new InvalidateCacheEvent());
             Log::info("TODO WITH ID " . $id . " UPDATED SUCCESSFULLY ",);
             return Utilities::getResponse("success", true, Response::HTTP_OK, $todo);
         } catch (\Exception $exception) {
@@ -241,8 +235,6 @@ class TodoService
             $todo->save();
 
             Cache::forget("todos_" . $statusUppercase);
-
-            //event(new InvalidateCacheEvent());
             Log::info("STATUS OF TODO WITH ID " . $id . " UPDATED SUCCESSFULLY ",);
             return Utilities::getResponse("Success", true, Response::HTTP_OK, $todo);
         } catch (\Exception $exception) {
@@ -270,7 +262,6 @@ class TodoService
 
             $todo->delete();
             Cache::forget("todo_" . $id);
-            //event(new InvalidateCacheEvent());
             Log::info("TODO WITH ID " . $id . " DELETED SUCCESSFULLY ",);
             return Utilities::getResponse("Todo deleted successfully", true, Response::HTTP_OK);
         } catch (\Exception $exception) {
