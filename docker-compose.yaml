@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+
+  backend:
+    container_name: todo_api
+    image: docker.io/bitnami/laravel:8
+    environment:
+      - DB_HOST=db
+      - DB_DATABASE=todo_app
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - DB_PORT=3306
+    ports:
+      - 1759:8000
+    volumes:
+      - .:/app
+    networks:
+      - app
+
+  db:
+    container_name: db
+    image: mysql
+    environment:
+      MYSQL_DATABASE: todo_app
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: 'root'
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_PORT: 3306
+    ports:
+      - 3306:3306
+    networks:
+      - app
+
+networks:
+    app:
+
+volumes:
+  cache:
+    driver: local
