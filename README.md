@@ -60,7 +60,7 @@ open the project in PHPSTORM and run the commands in quotes
 
 ### Link to Postman collection
 
-https://drive.google.com/file/d/1yuMQhLOqRftg-lwLI3L-VYaFoTllQ3CG/view?usp=share_link
+https://we.tl/t-cOtR0IBkoH
 
 ### What I would have done better if I had more time
 
